@@ -1,4 +1,5 @@
 const express = require('express');
+const { contentSecurityPolicy } = require('helmet');
 const helmet = require('helmet');
 const app = express();
 
@@ -10,7 +11,18 @@ app.use(helmet.ieNoOpen());
 app.use(helmet.hsts({ maxAge: 90*24*60*60, includeSubDomains: true, force: true }));
 app.use(helmet.noCache());  
 app.use(helmet.dnsPrefetchControl());
-app.use(helmet.contentSecurityPolicy({ directives: { defaultSrc: ["'self'"], scriptSrc: ["'self", 'trusted-cdn.com'] } }));
+app.use(helmet.contentSecurityPolicy({ directives: { defaultSrc: ["'self'"], scriptSrc: ["'self'", 'trusted-cdn.com'] } }));
+
+// app.use(helmet({
+//   frameguard: {
+//     action: 'deny',
+//   },
+//   contentSecurityPolicy: {
+//     directives: {
+//         defaultSrc: ["'self'"],
+//     }
+//   },
+// }))
 
 module.exports = app;
 const api = require('./server.js');
