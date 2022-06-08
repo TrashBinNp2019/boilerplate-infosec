@@ -4,6 +4,8 @@ const helmet = require('helmet');
 const app = express();
 
 app.use(helmet({
+  noCache: true,
+  dnsPrefetchControl: true,
   frameguard: {
     action: 'deny',
   },
