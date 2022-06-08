@@ -10,9 +10,11 @@ var fs = require("fs");
 var path = require("path");
 const bcrypt = require("bcrypt");
 
-bcrypt.hash('passw0rd!', 13, (err, hash) => {
+const myPass = 'passw0rd!';
+const saltRounds = 13;
+bcrypt.hash(myPass, saltRounds, (err, hash) => {
   console.log(hash);
-  bcrypt.compare('passw0rd!', hash, (err, res) => {
+  bcrypt.compare(myPass, hash, (err, res) => {
     console.log(res); //true
   });
 });
