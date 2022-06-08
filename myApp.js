@@ -8,6 +8,8 @@ app.use(helmet.xssFilter());
 app.use(helmet.noSniff());
 app.use(helmet.ieNoOpen());
 app.use(helmet.hsts({ maxAge: 90*24*60*60, includeSubDomains: true, force: true }));
+app.use(helmet.noCache());  
+app.use(helmet.dnsPrefetchControl());
 
 module.exports = app;
 const api = require('./server.js');
