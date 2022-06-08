@@ -10,6 +10,13 @@ var fs = require("fs");
 var path = require("path");
 const bcrypt = require("bcrypt");
 
+bcrypt.hash('passw0rd!', 13, (err, hash) => {
+  console.log(hash);
+  bcrypt.compare('passw0rd!', hash, (err, res) => {
+    console.log(res); //true
+  });
+});
+
 app.use(function (req, res, next) {
   res.set({
     "Access-Control-Allow-Origin": "*",
