@@ -4,6 +4,7 @@ const app = express();
 
 app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
 app.use(helmet.frameguard({ action: 'deny' }));  
+app.use(helmet.xssFilter());
 
 module.exports = app;
 const api = require('./server.js');
