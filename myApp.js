@@ -10,6 +10,7 @@ app.use(helmet.ieNoOpen());
 app.use(helmet.hsts({ maxAge: 90*24*60*60, includeSubDomains: true, force: true }));
 app.use(helmet.noCache());  
 app.use(helmet.dnsPrefetchControl());
+app.use(helmet.contentSecurityPolicy({ directives: { defaultSrc: ["'self'"], scriptSrc: ["'self", 'trusted-cdn.com'] } }));
 
 module.exports = app;
 const api = require('./server.js');
