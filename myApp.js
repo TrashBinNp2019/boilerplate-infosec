@@ -3,6 +3,8 @@ const { contentSecurityPolicy } = require('helmet');
 const helmet = require('helmet');
 const app = express();
 
+app.use(helmet.noCache( true ));
+app.use(helmet.dnsPrefetchControl( true ));
 app.use(helmet({
   noCache: true,
   dnsPrefetchControl: true,
